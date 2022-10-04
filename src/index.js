@@ -1,11 +1,14 @@
 import React from "react";
 import ReactDom from "react-dom";
+import Homepage from "./pages/homapage";
+
+import "./index.css";
 
 function Index() {
   return (
-    <div>
-      <h1>Hello This is my react App</h1>
-    </div>
+    <>
+      <Homepage />
+    </>
   );
 }
 
