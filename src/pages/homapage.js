@@ -6,8 +6,11 @@ import {
   AppBar,
   Grid,
   IconButton,
+  Select,
+  MenuItem,
+  InputLabel,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 import Toolbar from "@mui/material/Toolbar";
 import TextField from "@mui/material/TextField";
@@ -15,6 +18,8 @@ import { Box } from "@mui/system";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+// import DownloadIcon from "@mui/icons-material/Download";
+import GTranslateIcon from "@mui/icons-material/GTranslate";
 
 const styles = {
   root: {
@@ -48,46 +53,62 @@ const styles = {
 };
 
 function HomePage() {
-  let [username, setName] = useState("");
-  let [mail, setMail] = useState("");
-  let [pwd, setPwd] = useState("");
+  let person = useRef({ username: "", email: "", pwd: "" });
 
-  function checkCredentials(attr, val) {
-    switch (attr) {
-      case "USERNAME":
-        setName(val);
-        break;
-      case "EMAIL":
-        setMail(val);
-        break;
-      case "PWD":
-        setPwd(val);
-        break;
-      default:
-        console.log("credentials updated!");
-        break;
-    }
-  }
+  const setPerson = (ob) => {
+    person.current = ob;
+  };
+
+  //   useEffect
+  useEffect(() => {
+    console.log(person);
+  });
+
   return (
     <>
       <CssBaseline />
       <Container maxWidth="xxl" sx={styles.cover}>
         <AppBar sx={styles.header}>
-          <Toolbar>
-            <Typography variant="h4" sx={{ flexGrow: 1 }}>
-              Tinder
-            </Typography>
-            <Button color="inherit">Login</Button>
-            <Button color="inherit">Customize</Button>
-            <Button color="inherit">Customize</Button>
+          <Toolbar sx={{ justifyContent: "space-between" }}>
+            <Box sx={{ display: "flex" }}>
+              <Typography
+                variant="h4"
+                sx={{ marginRight: 5, fontWeight: "bold" }}
+              >
+                Tinder
+              </Typography>
+              <Button color="inherit">About</Button>
+              <Button color="inherit">Download</Button>
+            </Box>
+            <Box sx={{ display: "flex" }}>
+              {/* <GTranslateIcon sx={{ position: "relative", top: 5 }} /> */}
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={10}
+                onChange={() => {}}
+                sx={{
+                  fontSize: 20,
+                  color: "white",
+                  "& .MuiOutlinedInput-notchedOutline": {
+                    border: "none",
+                  },
+                  "& .MuiSvgIcon-root": {
+                    color: "white",
+                  },
+                }}
+              >
+                <MenuItem value={10}>English</MenuItem>
+                <MenuItem value={20}>Sinhala</MenuItem>
+              </Select>
+              <Button color="inherit">Log In</Button>
+            </Box>
           </Toolbar>
         </AppBar>
         <Container sx={styles.root} maxWidth="sm">
           <Grid container spacing={3}>
             <Grid item md={12}>
               <Typography variant="h1"> Tinder </Typography>
-            </Grid>
-            <Grid item md={12}>
               <Typography variant="subtitle1">
                 This is a dating app for Sri Lankans.
               </Typography>
@@ -95,20 +116,22 @@ function HomePage() {
             <Grid item md={12}>
               <TextField
                 id="filled-basic"
-                label="Enter Name"
+                label="Username"
                 variant="filled"
                 sx={styles.input}
+                value={person.username}
                 onChange={(e) => {
-                  checkCredentials("USERNAME", e.target.value);
+                  setPerson({ ...person, username: e.target.value });
                 }}
               />
               <TextField
                 id="filled-basic"
-                label="Enter Email"
+                label="E-mail"
                 variant="filled"
                 sx={styles.input}
+                value={person.email}
                 onChange={(e) => {
-                  checkCredentials("EMAIL", e.target.value);
+                  setPerson({ ...person, email: e.target.value });
                 }}
               />
               <TextField
@@ -116,8 +139,9 @@ function HomePage() {
                 label="Password"
                 variant="filled"
                 sx={styles.input}
+                value={person.pwd}
                 onChange={(e) => {
-                  checkCredentials("PWD", e.target.value);
+                  setPerson({ ...person, pwd: e.target.value });
                 }}
               />
               <Button>Get Started</Button>
