@@ -18,8 +18,6 @@ import { Box } from "@mui/system";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-// import DownloadIcon from "@mui/icons-material/Download";
-import GTranslateIcon from "@mui/icons-material/GTranslate";
 
 const styles = {
   root: {

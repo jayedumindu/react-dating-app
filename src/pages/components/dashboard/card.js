@@ -20,7 +20,7 @@ function CustomCard(props) {
         key={id}
         display="flex"
         justifyContent="center"
-        sx={{ height: "fit-content" }}
+        sx={{ height: "fit-content", padding: "10px 5px" }}
       >
         <Card sx={{ width: "90%" }}>
           <CardMedia
@@ -50,3 +50,6 @@ function CustomCard(props) {
 }
 
 export default CustomCard;
+
+let name;
+let card;
